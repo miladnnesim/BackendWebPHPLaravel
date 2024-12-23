@@ -5,7 +5,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+}) ->name('home');
+
+Route::get('/Looking for team', function () {
+    return view('l2f');
+}) ->name('l2f');
+
+Route::get('/faq', function () {
+    return view('faq');
+}) ->name('faq');
+
+Route::get('/contact', function () {
+    return view('contact');
+}) ->name('contact');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

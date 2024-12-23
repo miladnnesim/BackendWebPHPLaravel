@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section ('content')
-    <h1>Welkom op de Homepagina</h1>
+    <h1>Welkom op de L2F</h1>
     
     
 
