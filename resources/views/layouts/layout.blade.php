@@ -2,6 +2,8 @@
 <head>
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @yield('css')
+
 </head>
 <body>
     <main>
@@ -9,14 +11,14 @@
             
                 <a href="{{ route('home') }}"><img src="Images/ValoMate.png" alt=""></a>
                 <ul>
-                <li><a  href="{{ route('l2f') }}">Looking for Team</a></li>
+                <li><a  href="{{ route('lft') }}">Looking for Team</a></li>
                 <li><a  href="{{ route('faq') }}">FAQ</a></li>
                 <li><a  href="{{ route('contact') }}">Contact</a></li>
-                <li><a href=""><img src="Images/Iconprofile.png" alt=""></a></li>
+                <li><a href="{{route ('profile')}}"><img src="Images/Iconprofile.png" alt=""></a></li>
             </ul>
         </nav>
         
-        @Yield ('content')
+        @yield ('content')
     </main>
 </body>
 </html>
