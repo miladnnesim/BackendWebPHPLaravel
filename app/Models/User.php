@@ -45,4 +45,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function scrims()
+    {
+        return $this->belongsToMany(Scrim::class, 'scrim_user', 'user_id', 'scrim_id');
+    }
 }

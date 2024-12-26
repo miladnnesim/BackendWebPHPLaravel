@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Valorant';
+    src: url('fonts/Valorant.ttf') format('truetype');
+}
+
 body {
 
     padding: 0;
@@ -15,6 +20,10 @@ body {
     padding: 1rem;
     border-bottom: 1px solid rgb(235, 235, 235);
 
+}
+
+h1 {
+    font-family: Valorant, sans-serif;
 }
 
 .navbar img {
@@ -49,4 +58,17 @@ body {
 
 .navbar a:hover {
     opacity: 0.7;
+}
+
+button {
+    padding: 5px 10px;
+    background-color: rgb(196, 43, 43);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(196, 43, 43);
 }
