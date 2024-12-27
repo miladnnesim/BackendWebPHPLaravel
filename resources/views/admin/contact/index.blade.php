@@ -19,7 +19,6 @@
             <td>{{ $contact->email }}</td>
             <td>{{ \Illuminate\Support\Str::limit($contact->message, 50) }}</td>
             <td>
-                <a href="{{ route('contact.show', $contact->id) }}">Bekijk</a>
             </td>
         </tr>
         @endforeach

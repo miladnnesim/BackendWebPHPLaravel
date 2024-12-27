@@ -26,7 +26,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('admin.news.create'); // Specifieke view voor het maken van nieuws
+        return view('admin.create'); // Specifieke view voor het maken van nieuws
     }
 
     /**
@@ -62,6 +62,13 @@ class NewsController extends Controller
         $newsItem = News::findOrFail($id);
         $newsItem->delete();
 
-        return redirect()->route('home')->with('success', 'Nieuwsitem succesvol verwijderd!');
+        return redirect()->route('admin.news.index')->with('success', 'Nieuwsitem succesvol verwijderd!');
     }
+
+    public function adminIndex()
+    { 
+    $newsItems = News::latest()->get(); // Haal alle nieuwsitems op
+    return view('admin.news.index', compact('newsItems')); // Admin specifieke view
+    }
+
 }

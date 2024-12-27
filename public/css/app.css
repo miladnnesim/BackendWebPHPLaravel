@@ -24,6 +24,7 @@ body {
 
 h1 {
     font-family: Valorant, sans-serif;
+    color: rgb(0, 0, 0);
 }
 
 .navbar img {
@@ -31,7 +32,6 @@ h1 {
 }
 
 .navbar ul {
-    width: 100%;
     align-items: center;
     justify-content: flex-end;
     list-style-type: none;
@@ -71,4 +71,49 @@ button {
 
 button:hover {
     background-color: rgb(196, 43, 43);
+}
+
+.admin {
+    align-items: center;
+    color: white;
+    justify-content: space-between;
+    background-color: rgb(201, 123, 123);
+
+    height: 50px;
+    padding: 1rem;
+    border-bottom: 0px solid rgb(235, 235, 235);
+}
+
+.admin h1 {
+    color: white;
+    margin: 0;
+    width: 200px;
+}
+
+.admin ul li a {
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    padding: 20px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+table .header {
+    background-color: #252525;
+    color: white;
+}
+
+table .header td {
+    padding: 5px;
+    font-weight: bold;
 }
