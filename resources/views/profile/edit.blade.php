@@ -24,6 +24,11 @@
                     @include('profile.partials.delete-user-form')
                 </div>
             </div>
+            <form method="POST" action="{{ route('logout') }}">
+    @csrf
+    <button type="submit">Uitloggen</button>
+</form>
+
         </div>
     </div>
 </x-app-layout>

@@ -14,10 +14,10 @@
                 <li><a  href="{{ route('lft') }}">Looking for Team</a></li>
                 <li><a  href="{{ route('faq') }}">FAQ</a></li>
                 <li><a  href="{{ route('contact') }}">Contact</a></li>
-                <li><a href=""><img src="Images/Iconprofile.png" alt=""></a></li>
+                <li><a href="{{ route('profile.edit') }}"><img src="Images/Iconprofile.png" alt=""></a></li>
             </ul>
         </nav>
-        
+        @yield('AdminNav')
         @yield ('content')
     </main>
 </body>

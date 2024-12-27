@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Duo extends Model
 {
-    // Vulbare velden (mass assignment)
     protected $fillable = [
         'player',
         'rating',

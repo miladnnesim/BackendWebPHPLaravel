@@ -85,15 +85,24 @@
     <h1 class="faq-title">Veelgestelde Vragen (FAQ)</h1>
 
     @foreach ($categories as $category)
-        <div class="faq-category">
-            <h2>{{ $category->name }}</h2>
-            @foreach ($category->faqs as $faq)
-                <div class="faq-item">
-                    <h3>{{ $faq->question }}</h3>
-                    <p>{{ $faq->answer }}</p>
-                </div>
-            @endforeach
-        </div>
+        @php
+            // Filter FAQs to only those with answers
+            $faqsWithAnswers = $category->faqs->filter(function ($faq) {
+                return !empty($faq->answer);
+            });
+        @endphp
+
+        @if ($faqsWithAnswers->isNotEmpty()) <!-- Check if there are FAQs with answers -->
+            <div class="faq-category">
+                <h2>{{ $category->name }}</h2>
+                @foreach ($faqsWithAnswers as $faq)
+                    <div class="faq-item">
+                        <h3>{{ $faq->question }}</h3>
+                        <p>{{ $faq->answer }}</p>
+                    </div>
+                @endforeach
+            </div>
+        @endif
     @endforeach
 
     @auth

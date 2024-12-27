@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             FaqSeeder::class,
             NewsSeeder::class,
             ContactSeeder::class,
+            UserSeeder::class
+
         ]);
         // User::factory(10)->create();
 

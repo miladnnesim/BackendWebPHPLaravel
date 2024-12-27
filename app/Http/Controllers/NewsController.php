@@ -8,29 +8,25 @@ use App\Models\News;
 class NewsController extends Controller
 {
     /**
-     * Toon alle nieuwsitems.
+     * Toon nieuwsitems op de homepage.
      */
     public function index()
     {
-        $newsItems = News::latest()->get(); // Haal alle nieuwsitems op, gesorteerd op publicatiedatum
-        return view('news.index', compact('newsItems'));
+        $newsItems = News::latest()->get(); // Haal alle nieuwsitems op, gesorteerd op datum
+        return view('home', compact('newsItems')); // Laadt de home.blade.php view
     }
-
-    /**
-     * Toon een specifiek nieuwsitem.
-     */
     public function show($id)
     {
-        $newsItem = News::findOrFail($id); // Haal een specifiek nieuwsitem op
+        $newsItem = News::findOrFail($id); 
         return view('news.show', compact('newsItem'));
     }
 
     /**
-     * Admin: Voeg een nieuw nieuwsitem toe.
+     * Admin: Toon het formulier om nieuwsitems te maken.
      */
     public function create()
     {
-        return view('news.create');
+        return view('admin.news.create'); // Specifieke view voor het maken van nieuws
     }
 
     /**
@@ -44,10 +40,10 @@ class NewsController extends Controller
             'content' => 'required|string',
         ]);
 
-        // Opslaan van afbeelding
+        // Afbeelding opslaan
         $imagePath = $request->file('image')->store('news_images', 'public');
 
-        // Nieuwsitem opslaan
+        // Nieuw item maken
         News::create([
             'title' => $validatedData['title'],
             'image' => $imagePath,
@@ -55,7 +51,7 @@ class NewsController extends Controller
             'publication_date' => now(),
         ]);
 
-        return redirect()->route('news.index')->with('success', 'Nieuwsitem succesvol toegevoegd!');
+        return redirect()->route('home')->with('success', 'Nieuwsitem succesvol toegevoegd!');
     }
 
     /**
@@ -66,6 +62,6 @@ class NewsController extends Controller
         $newsItem = News::findOrFail($id);
         $newsItem->delete();
 
-        return redirect()->route('news.index')->with('success', 'Nieuwsitem succesvol verwijderd!');
+        return redirect()->route('home')->with('success', 'Nieuwsitem succesvol verwijderd!');
     }
 }

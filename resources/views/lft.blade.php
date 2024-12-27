@@ -7,7 +7,7 @@
 @section('content')
 <div class="container">
     <h1>Scrim / 5 stack / 10 man</h1>
-    <p>Hier kun je scrims, 5-stacks en 10-man games vinden die gepland staan.</p>
+    <p>Organiseer uw eigen scrims, 5-stacks en 10-man games hier : <a href="{{route('lftscrimform')}}"><button>create</button></a></p>
 
     @if (session('success'))
         <p class="success">{{ session('success') }}</p>

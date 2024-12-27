@@ -25,7 +25,9 @@ class FaqController extends Controller
      */
     public function create()
     {
-        return view('faqcreate');
+        $categories = Category::all();
+
+        return view('faqcreate', compact('categories'));
     }
 
     /**
