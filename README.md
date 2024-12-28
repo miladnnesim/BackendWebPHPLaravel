@@ -69,6 +69,7 @@ Volg de onderstaande stappen om het project lokaal op te zetten:
 1. **Clone het project**:
 
     git clone https://github.com/miladnnesim/BackendWebPHPLaravel.git
+
     cd BackendWebPHPLaravel/
 
 2. **Configureer of breng uw eigen .env file**:
@@ -95,4 +96,3 @@ Bij het seeden van de database worden enkele standaardcategorieën, vragen, en v
 
 Gebruikers moeten hun Riot ID invullen om deel te nemen aan scrims.
 Posts voor duo-partners vereisen het specificeren van een rang en voorkeur (casual of competitief).
-Bedankt voor het gebruik van Valorant Mate Finder
