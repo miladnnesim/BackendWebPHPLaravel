@@ -1,66 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Valorant Mate Finder
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Over het Project
 
-## About Laravel
+**Valorant Mate Finder** is een webplatform dat spelers van de game Valorant helpt om samen te werken en teams te vormen. De website biedt gebruikers een centrale plek om scrims te organiseren, duo-partners te zoeken, en antwoorden te krijgen op veelgestelde vragen via de FAQ-sectie. Beheerders hebben extra mogelijkheden om gebruikers, nieuwsitems, en FAQ's te beheren.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Functionaliteiten
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Voor Gebruikers
 
-## Learning Laravel
+-   **Scrims en Teams Organiseren**:
+    -   Gebruikers kunnen zelf scrims aanmaken en eraan deelnemen.
+    -   Deelnemers worden getoond met hun **Riot ID** en een link naar hun profiel.
+-   **Zoek een Duo**:
+    -   Gebruikers kunnen duo-partners vinden door een post te maken (competitief of casual).
+    -   Alle duo-posts worden weergegeven in een overzichtelijke tabel.
+-   **FAQ**:
+    -   Gebruikers kunnen vragen stellen in bestaande categorieën of nieuwe categorieën creëren.
+    -   Een admin kan later antwoorden toevoegen.
+-   **Profielpagina**:
+    -   Gebruikers hebben een persoonlijke profielpagina met informatie zoals hun Riot ID, rang, en voorkeuren.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Voor Beheerders
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   **Admin Panel**:
+    -   Toegang tot een speciale beheerbalk met opties zoals:
+        -   **Nieuwsbeheer**: Nieuwsitems toevoegen, verwijderen en bewerken.
+        -   **FAQ-beheer**: Vragen beantwoorden, categorieën beheren en nieuwe items toevoegen.
+        -   **Gebruikersbeheer**: Gebruikers promoten of verwijderen.
+        -   **Contactbeheer**: Beheren van contactformulieren.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Navigeren op de Website
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Gebruiker Navbar
 
-### Premium Partners
+-   **Home**: Bekijk het laatste nieuws.
+-   **Looking for Team**: Organiseer scrims, maak duo-posts of zoek naar teams.
+-   **FAQ**: Stel vragen of bekijk veelgestelde vragen.
+-   **Contact**: Neem contact op met de beheerders.
+-   **Profielicoon**: Ga naar je persoonlijke profiel.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Admin Navbar
 
-## Contributing
+-   **Nieuws Beheer**: Voeg nieuwsitems toe, bewerk bestaande items of verwijder ze.
+-   **FAQ Beheer**: Beantwoord vragen of voeg nieuwe categorieën en vragen toe.
+-   **Beheer Contact Forms**: Bekijk en verwerk contactformulieren.
+-   **Beheer Gebruikers**: Bekijk en beheer gebruikersrollen.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Installatie en Gebruik
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Volg de onderstaande stappen om het project lokaal op te zetten:
 
-## Security Vulnerabilities
+### Vereisten
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+-   PHP 8.0+
+-   Composer
+-   MySQL
+-   Laravel 11+
+-   Node.js & NPM
 
-## License
+### Stappen
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. **Clone het project**:
+
+    git clone https://github.com/miladnnesim/BackendWebPHPLaravel.git
+    cd BackendWebPHPLaravel/
+
+2. **Configureer of breng uw eigen .env file**:
+
+3. **Voer de migraties en seeders uit en start de server**:
+
+    php artisan migrate:fresh --seed
+    php artisan serve
+
+### Belangrijke Informatie
+
+Standaard Beheerdersaccount
+Email: admin@ehb.be
+Wachtwoord: Password!321
+Seed Data
+Bij het seeden van de database worden enkele standaardcategorieën, vragen, en voorbeeldposts toegevoegd.
+
+## Gebruikersregels
+
+Gebruikers moeten hun Riot ID invullen om deel te nemen aan scrims.
+Posts voor duo-partners vereisen het specificeren van een rang en voorkeur (casual of competitief).
+Bedankt voor het gebruik van Valorant Mate Finder
