@@ -76,14 +76,19 @@ Volg de onderstaande stappen om het project lokaal op te zetten:
 3. **Voer de migraties en seeders uit en start de server**:
 
     php artisan migrate:fresh --seed
+
     php artisan serve
 
 ### Belangrijke Informatie
 
 Standaard Beheerdersaccount
+
 Email: admin@ehb.be
+
 Wachtwoord: Password!321
-Seed Data
+
+### Seed Data
+
 Bij het seeden van de database worden enkele standaardcategorieën, vragen, en voorbeeldposts toegevoegd.
 
 ## Gebruikersregels
