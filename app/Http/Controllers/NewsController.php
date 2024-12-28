@@ -7,13 +7,11 @@ use App\Models\News;
 
 class NewsController extends Controller
 {
-    /**
-     * Toon nieuwsitems op de homepage.
-     */
+ 
     public function index()
     {
-        $newsItems = News::latest()->get(); // Haal alle nieuwsitems op, gesorteerd op datum
-        return view('home', compact('newsItems')); // Laadt de home.blade.php view
+        $newsItems = News::latest()->get(); 
+        return view('home', compact('newsItems')); 
     }
     public function show($id)
     {
@@ -21,17 +19,13 @@ class NewsController extends Controller
         return view('news.show', compact('newsItem'));
     }
 
-    /**
-     * Admin: Toon het formulier om nieuwsitems te maken.
-     */
+   
     public function create()
     {
-        return view('admin.create'); // Specifieke view voor het maken van nieuws
+        return view('admin.create');
     }
 
-    /**
-     * Sla een nieuw nieuwsitem op.
-     */
+   
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -40,10 +34,8 @@ class NewsController extends Controller
             'content' => 'required|string',
         ]);
 
-        // Afbeelding opslaan
         $imagePath = $request->file('image')->store('news_images', 'public');
 
-        // Nieuw item maken
         News::create([
             'title' => $validatedData['title'],
             'image' => $imagePath,
@@ -54,9 +46,7 @@ class NewsController extends Controller
         return redirect()->route('home')->with('success', 'Nieuwsitem succesvol toegevoegd!');
     }
 
-    /**
-     * Verwijder een nieuwsitem.
-     */
+   
     public function destroy($id)
     {
         $newsItem = News::findOrFail($id);

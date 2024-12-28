@@ -3,12 +3,15 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Scrim;
+use App\Models\Scrim; 
+use App\Models\User;
 
 class ScrimSeeder extends Seeder
 {
     public function run()
     {
+        $admin = User::where('email', 'admin@ehb.be')->first(); 
+
         Scrim::create([
             'type' => 'scrim',
             'date' => '2024-12-25',
@@ -19,6 +22,7 @@ class ScrimSeeder extends Seeder
             'min_rank' => 'diamond',
             'max_rank' => 'ascendant',
             'notes' => 'Competitive scrim looking for serious players.',
+            'organizer_id' => $admin->id, 
         ]);
 
         Scrim::create([
@@ -31,6 +35,7 @@ class ScrimSeeder extends Seeder
             'min_rank' => 'gold',
             'max_rank' => 'platinum',
             'notes' => 'Casual 5-stack for ranked games.',
+            'organizer_id' => $admin->id, 
         ]);
     }
 }

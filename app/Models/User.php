@@ -29,8 +29,14 @@ class User extends Authenticatable
     {
         return $this->role === 'admin';
     }
+    public function organizedScrims()
+{
+    return $this->hasMany(Scrim::class, 'organizer_id');
+}
+
 
     protected $hidden = [
+        'birthday' => 'date',
         'password',
         'remember_token',
     ];

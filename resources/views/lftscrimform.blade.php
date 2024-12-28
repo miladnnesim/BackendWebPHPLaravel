@@ -2,19 +2,7 @@
 
 @section('css')
 <style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    line-height: 1.6;
-    padding: 20px;
-}
+  
 
 .form-container {
     max-width: 600px;
@@ -52,50 +40,10 @@ form textarea {
     height: 100px;
 }
 
-form button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
-}
-
-form button:hover {
-    background-color: #0056b3;
-}
-
-form input:focus, form select:focus, form textarea:focus {
-    border-color: #007BFF;
-    outline: none;
-}
-
-@media (max-width: 768px) {
-    .form-container {
-        padding: 15px 20px;
-    }
-
-    form label, form input, form select, form textarea, form button {
-        font-size: 14px;
-    }
-    
-}
 
 
-.back-link {
-    text-decoration: none;
-    color: #007BFF;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 8px 12px;
-    border-radius: 5px;
-    background-color: white;
-    transition: all 0.1s ease;
-}
 
-.back-link:hover {
-    opacity: 0.5;
-}
+
 
 </style>
 @endsection

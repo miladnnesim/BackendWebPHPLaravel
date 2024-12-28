@@ -11,7 +11,7 @@ class CreateScrimsTable extends Migration
 {
     Schema::create('scrims', function (Blueprint $table) {
         $table->id();
-        $table->string('type'); // Dit moet aanwezig zijn
+        $table->string('type'); 
         $table->date('date');
         $table->time('start_time');
         $table->time('end_time');
@@ -20,6 +20,7 @@ class CreateScrimsTable extends Migration
         $table->string('min_rank');
         $table->string('max_rank');
         $table->text('notes')->nullable();
+        $table->foreignId('organizer_id')->constrained('users')->onDelete('cascade'); 
         $table->timestamps();
     });
 }

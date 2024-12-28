@@ -13,7 +13,6 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Default admin gebruiker
         User::create([
             'name' => 'Admin',
             'email' => 'admin@ehb.be',

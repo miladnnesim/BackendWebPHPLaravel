@@ -21,12 +21,17 @@ Route::get('/Lookingforteam/scrim', [LftscrimController::class, 'index'])->name(
 Route::post('/Lookingforteam/scrim', [LftscrimController::class, 'store'])->name('lftscrim.store');
 Route::post('/lft/scrim/join/{id}', [LftscrimController::class, 'join'])->name('scrim.join');
 Route::post('/lft/scrim/leave/{id}', [LftscrimController::class, 'leave'])->name('scrim.leave');
+Route::delete('/scrims/{id}', [LftscrimController::class, 'destroy'])->name('scrim.destroy');
+
 
 // News
 Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 
+
 // FAQ
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
+Route::get('/faq/ask', [FaqController::class, 'create'])->name('faq.create');
+
 
 // Contact
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
@@ -48,16 +53,29 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
     Route::post('/users/{id}/promote', [UserController::class, 'promoteToAdmin'])->name('admin.users.promote');
     Route::post('/users/{id}/demote', [UserController::class, 'demoteToUser'])->name('admin.users.demote');
-   
-    Route::get('/faq/create', [FaqController::class, 'create'])->name('faq.create');
-    Route::post('/faq', [FaqController::class, 'store'])->name('faq.store');
+
+    
+    Route::post('/admin/faq/store', [FaqController::class, 'storeAdmin'])->name('admin.faq.store');
+    Route::delete('/faq/category/{id}', [FaqController::class, 'delete'])->name('faq.category.delete');
     Route::delete('/faq/{id}', [FaqController::class, 'delete'])->name('faq.delete');
+    Route::patch('/faq/category/{id}', [FaqController::class, 'updateCategory'])->name('faq.category.update');
+    Route::patch('/faq/{id}', [FaqController::class, 'update'])->name('faq.update');
+    
+
+    
+
+    Route::get('/admin/faq', [FaqController::class, 'indexAdmin'])->name('admin.faq.index');
+    Route::post('/admin/faq', [FaqController::class, 'store'])->name('faq.store');
+    Route::delete('/admin/faq/{id}', [FaqController::class, 'delete'])->name('faq.delete');
+    
+
 
    
     Route::get('/admin/contact', [ContactController::class, 'adminIndex'])->name('admin.contact.index');
     Route::get('/admin/contact/{id}', [ContactController::class, 'show'])->name('admin.contact.show');
 
-    
+    Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+
     Route::get('/profileedit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

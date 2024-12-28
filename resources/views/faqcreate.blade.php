@@ -2,7 +2,7 @@
 
 @section('css')
 <style>
-    .form-container {
+    .faq-container {
         max-width: 600px;
         margin: 30px auto;
         padding: 20px;
@@ -11,11 +11,11 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
 
-    .form-title {
+    .faq-title {
         text-align: center;
-        font-family: 'Valorant', sans-serif;
-        font-weight: 500;
-        color: rgb(196, 43, 43);
+        font-family: 'Arial', sans-serif;
+        font-weight: bold;
+        color: #333;
         margin-bottom: 20px;
         font-size: 24px;
     }
@@ -30,7 +30,8 @@
         font-weight: bold;
     }
 
-    .form-group input, .form-group textarea, .form-group select {
+    .form-group select,
+    .form-group input {
         width: 100%;
         padding: 10px;
         border: 1px solid #ddd;
@@ -38,11 +39,15 @@
     }
 
     .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
         resize: vertical;
     }
 
     .form-group button {
-        background-color: rgb(196, 43, 43);
+        background-color: #007BFF;
         color: white;
         padding: 10px 15px;
         border: none;
@@ -53,7 +58,7 @@
     }
 
     .form-group button:hover {
-        background-color: #b33232;
+        background-color: #0056b3;
     }
 
     .error {
@@ -64,22 +69,30 @@
 @endsection
 
 @section('content')
-<div class="form-container">
-    <h1 class="form-title">Nieuwe Categorie of Vraag Toevoegen</h1>
+<div class="faq-container">
+    <h1 class="faq-title">Stel een Vraag</h1>
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <form action="{{ route('faq.store') }}" method="POST">
         @csrf
 
+        <!-- Nieuwe categorie -->
         <div class="form-group">
-            <label for="name">Categorie Naam (optioneel):</label>
-            <input type="text" id="name" name="name" value="{{ old('name') }}">
+            <label for="name">Categorie Naam (voor nieuwe categorie, optioneel):</label>
+            <input type="text" id="name" name="name" placeholder="Typ een nieuwe categorie..." value="{{ old('name') }}">
             @error('name')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
 
+        <!-- Bestaande categorie -->
         <div class="form-group">
-            <label for="category_id">Kies een Categorie (optioneel):</label>
+            <label for="category_id">Kies een Bestaande Categorie (optioneel):</label>
             <select id="category_id" name="category_id">
                 <option value="">Selecteer een categorie</option>
                 @foreach ($categories as $category)
@@ -91,17 +104,17 @@
             @enderror
         </div>
 
+        <!-- Vraag -->
         <div class="form-group">
-            <label for="question">Vraag (optioneel):</label>
-            <input type="text" id="question" name="question" value="{{ old('question') }}">
+            <label for="question">Jouw Vraag:</label>
+            <textarea id="question" name="question" placeholder="Typ hier je vraag..." required>{{ old('question') }}</textarea>
             @error('question')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
 
-
         <div class="form-group">
-            <button type="submit">Opslaan</button>
+            <button type="submit">Verstuur</button>
         </div>
     </form>
 </div>

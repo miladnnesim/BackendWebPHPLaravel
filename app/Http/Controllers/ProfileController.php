@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
+
 
 class ProfileController extends Controller
 {
@@ -21,17 +23,19 @@ class ProfileController extends Controller
 
 
     public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
+{
+    $user = $request->user();
+    $validatedData = $request->validated();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    if ($request->hasFile('profile_photo')) {
+        $validatedData['profile_photo'] = $request->file('profile_photo')->store('profile_photos', 'public');
     }
+
+    $user->update($validatedData);
+
+    return Redirect::route('profile.edit')->with('status', 'profile-updated');
+}
+
 
 
     public function destroy(Request $request): RedirectResponse
@@ -51,4 +55,14 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+    public function show($id)
+{
+    if ($id == 0) {
+        $id = auth()->user()->id;
+    }
+    $user = User::with('organizedScrims')->findOrFail($id);
+
+    return view('profile.profile', compact('user'));
+}
+
 }

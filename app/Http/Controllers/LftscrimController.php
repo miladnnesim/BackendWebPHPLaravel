@@ -45,16 +45,17 @@ class LftscrimController extends Controller
         }
 
         $scrim = new Scrim();
-        $scrim->type = $validatedData['type'];
-        $scrim->date = $validatedData['date'];
-        $scrim->start_time = $validatedData['start_time'];
-        $scrim->end_time = $validatedData['end_time'];
-        $scrim->players_needed = $validatedData['players_needed'];
-        $scrim->language = $validatedData['language'];
-        $scrim->min_rank = $validatedData['min_rank'];
-        $scrim->max_rank = $validatedData['max_rank'];
-        $scrim->notes = $validatedData['notes'] ?? null;
-        $scrim->save();
+$scrim->organizer_id = auth()->id(); 
+$scrim->type = $validatedData['type'];
+$scrim->date = $validatedData['date'];
+$scrim->start_time = $validatedData['start_time'];
+$scrim->end_time = $validatedData['end_time'];
+$scrim->players_needed = $validatedData['players_needed'];
+$scrim->language = $validatedData['language'];
+$scrim->min_rank = $validatedData['min_rank'];
+$scrim->max_rank = $validatedData['max_rank'];
+$scrim->notes = $validatedData['notes'] ?? null;
+$scrim->save();
 
         return redirect()->route('lft')->with('success', 'De scrim is succesvol aangemaakt!');
     }
@@ -62,16 +63,23 @@ class LftscrimController extends Controller
 
     public function join($scrimId)
     {
+        $user = auth()->user();
+    
+        if (empty($user->riot_id)) {
+            return redirect()->route('lft')->with('error', 'Je moet een Riot ID invullen voordat je kunt deelnemen aan een scrim. Ga naar je profiel en voeg je Riot ID toe.');
+        }
+    
         $scrim = Scrim::findOrFail($scrimId);
-
-        if ($scrim->participants()->where('user_id', auth()->id())->exists()) {
+    
+        if ($scrim->participants()->where('user_id', $user->id)->exists()) {
             return redirect()->route('lft')->with('error', 'Je bent al deelnemer van deze scrim.');
         }
-
-        $scrim->participants()->attach(auth()->id());
-
+    
+         $scrim->participants()->attach($user->id);
+    
         return redirect()->route('lft')->with('success', 'Je hebt succesvol deelgenomen aan de scrim!');
     }
+    
     public function leave($scrimId)
 {
     $scrim = Scrim::findOrFail($scrimId);
@@ -83,5 +91,18 @@ class LftscrimController extends Controller
     $scrim->participants()->detach(auth()->id());
 
     return redirect()->route('lft')->with('success', 'Je hebt de scrim verlaten.');
+}
+
+public function destroy($id)
+{
+    $scrim = Scrim::findOrFail($id);
+
+    if ($scrim->organizer_id !== auth()->id()) {
+        return redirect()->back()->with('error', 'Je hebt geen rechten om deze scrim te verwijderen.');
+    }
+
+    $scrim->delete();
+
+    return redirect()->route('profile.show', auth()->id())->with('success', 'Scrim succesvol verwijderd.');
 }
 }

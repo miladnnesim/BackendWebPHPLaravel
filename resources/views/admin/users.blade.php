@@ -21,7 +21,7 @@
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->role }}</td>
                     <td>
-                        <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-info">Bekijk Profiel</a>
+                        <a href="{{ route('profile.show', $user->id) }}" class="btn btn-info">Bekijk Profiel</a>
 
                         @if ($user->role === 'user')
                             <form action="{{ route('admin.users.promote', $user->id) }}" method="POST" style="display: inline-block;">

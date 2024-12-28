@@ -15,10 +15,10 @@ class CreateFaqsTable extends Migration
     {
         Schema::create('faqs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade'); // Relatie met categories
-            $table->string('question'); // FAQ-vraag
-            $table->text('answer'); // Antwoord op de vraag
-            $table->timestamps(); // Created_at en updated_at
+            $table->foreignId('category_id')->constrained('categories')->onDelete('cascade'); 
+            $table->string('question'); 
+            $table->text('answer')->nullable()->change(); 
+            $table->timestamps(); 
         });
     }
 

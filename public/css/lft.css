@@ -22,3 +22,16 @@ p {
     padding: 5px 10px;
     font-size: 14px;
 }
+
+.participants {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.participants li {
+    text-decoration: none;
+}

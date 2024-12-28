@@ -17,8 +17,8 @@
         <tr>
             <td>{{ $contact->name }}</td>
             <td>{{ $contact->email }}</td>
-            <td>{{ \Illuminate\Support\Str::limit($contact->message, 50) }}</td>
-            <td>
+            <td>{{$contact->message }}</td>
+            <td><a href="mailto:{{ $contact->email }}">Send email</a>
             </td>
         </tr>
         @endforeach

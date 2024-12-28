@@ -8,18 +8,14 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Toon een overzicht van alle gebruikers.
-     */
+ 
     public function index()
     {
         $users = User::all();
         return view('admin.users', compact('users'));
     }
 
-    /**
-     * Promoveer een gebruiker tot admin.
-     */
+
     public function promoteToAdmin($id)
     {
         $user = User::findOrFail($id);
@@ -34,9 +30,6 @@ class UserController extends Controller
         return redirect()->back()->with('error', 'Je hebt geen rechten om dit te doen.');
     }
 
-    /**
-     * Degradeer een admin naar een gewone gebruiker.
-     */
     public function demoteToUser($id)
     {
         $user = User::findOrFail($id);
@@ -51,17 +44,13 @@ class UserController extends Controller
         return redirect()->back()->with('error', 'Je hebt geen rechten om dit te doen.');
     }
 
-    /**
-     * Toon het formulier om een nieuwe gebruiker aan te maken.
-     */
+   
     public function create()
     {
         return view('admin.create-user');
     }
 
-    /**
-     * Sla een nieuwe gebruiker op in de database.
-     */
+    
     public function store(Request $request)
     {
         $validatedData = $request->validate([

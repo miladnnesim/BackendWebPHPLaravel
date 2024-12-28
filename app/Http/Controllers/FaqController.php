@@ -8,21 +8,16 @@ use App\Models\Faq;
 
 class FaqController extends Controller
 {
-    /**
-     * Toon de FAQ-pagina.
-     */
+
+
     public function index()
     {
-        // Haal alle categorieën en hun gerelateerde FAQ's op
         $categories = Category::with('faqs')->get();
 
-        // Retourneer de view en geef de data door
         return view('faq', compact('categories'));
     }
 
-    /**
-     * Admin: Toon het formulier om een nieuwe categorie of FAQ toe te voegen.
-     */
+ 
     public function create()
     {
         $categories = Category::all();
@@ -30,48 +25,122 @@ class FaqController extends Controller
         return view('faqcreate', compact('categories'));
     }
 
-    /**
-     * Admin: Sla een nieuwe categorie of FAQ op.
-     */
+ 
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|string|max:255', // Voor categorieën
-            'question' => 'nullable|string|max:255', // Voor FAQ's
-            'answer' => 'nullable|string|max:2000', // Voor FAQ's
-            'category_id' => 'nullable|exists:categories,id', // Relatie met categorie
+            'name' => 'nullable|string|max:255', 
+            'category_id' => 'nullable|exists:categories,id', 
+            'question' => 'required|string|max:255',
         ]);
-
+    
         if ($request->filled('name')) {
-            // Voeg een nieuwe categorie toe
-            Category::create(['name' => $validatedData['name']]);
-        } elseif ($request->filled('question') && $request->filled('answer')) {
-            // Voeg een nieuwe FAQ toe
-            Faq::create([
-                'question' => $validatedData['question'],
-                'answer' => $validatedData['answer'],
-                'category_id' => $validatedData['category_id'],
-            ]);
+            $category = Category::create(['name' => $validatedData['name']]);
+            $categoryId = $category->id; 
+        } else {
+            $categoryId = $validatedData['category_id']; 
         }
-
-        return redirect()->route('faq')->with('success', 'Categorie of FAQ succesvol toegevoegd!');
+    
+        // Voeg de vraag toe
+        Faq::create([
+            'question' => $validatedData['question'],
+            'answer' => '', 
+            'category_id' => $categoryId,
+        ]);
+        
+    
+        return redirect()->route('faq')->with('success', 'Je vraag is succesvol ingediend! Een admin zal binnenkort een antwoord toevoegen.');
     }
+    public function storeAdmin(Request $request)
+{
+    $validatedData = $request->validate([
+        'name' => 'nullable|string|max:255', 
+        'question' => 'nullable|string|max:255', 
+        'answer' => 'nullable|string|max:2000', 
+        'category_id' => 'nullable|exists:categories,id', 
+    ]);
+
+    if ($request->filled('name')) {
+      
+        $category = Category::create(['name' => $validatedData['name']]);
+        $categoryId = $category->id;
+    } elseif ($request->filled('category_id')) {
+       
+        $categoryId = $validatedData['category_id'];
+    } else {
+        return redirect()->route('admin.faq.index')->with('error', 'Je moet een categorie selecteren of een nieuwe categorie toevoegen.');
+    }
+
+    if ($request->filled('question')) {
+      
+        Faq::create([
+            'question' => $validatedData['question'],
+            'answer' => $validatedData['answer'] ?? null, 
+            'category_id' => $categoryId,
+        ]);
+    }
+
+    return redirect()->route('admin.faq.index')->with('success', 'De FAQ is succesvol toegevoegd!');
+}
+
+    
+    
+
 
     /**
      * Admin: Verwijder een categorie of FAQ.
      */
     public function delete($id)
-    {
-        $faq = Faq::find($id);
-        if ($faq) {
-            $faq->delete();
-        } else {
-            $category = Category::find($id);
-            if ($category) {
-                $category->delete();
-            }
+{
+    $faq = Faq::find($id);
+    if ($faq) {
+        $faq->delete();
+    } else {
+        $category = Category::find($id);
+        if ($category) {
+            $category->delete();
         }
-
-        return redirect()->route('faq')->with('success', 'Categorie of FAQ succesvol verwijderd!');
     }
+
+    return redirect()->route('admin.faq.index')->with('success', 'Categorie of FAQ succesvol verwijderd!');
+}
+
+    public function indexAdmin()
+    {
+        // Haal alle categorieën op
+        $categories = Category::with('faqs')->get();
+    
+        // Haal alle niet-beantwoorde vragen op
+        $unansweredFaqs = Faq::whereNull('answer')->get();
+    
+        // Retourneer de admin view voor FAQ beheer
+        return view('admin.faqpanel', compact('categories', 'unansweredFaqs'));
+    }
+    public function update(Request $request, $id)
+{
+    $faq = Faq::findOrFail($id);
+    $validatedData = $request->validate([
+        'answer' => 'required|string|max:2000',
+    ]);
+
+    $faq->update(['answer' => $validatedData['answer']]);
+
+    return redirect()->route('admin.faq.index')->with('success', 'FAQ succesvol beantwoord!');
+}
+
+
+public function updateCategory(Request $request, $id)
+{
+    $validatedData = $request->validate([
+        'name' => 'required|string|max:255',
+    ]);
+
+    $category = Category::findOrFail($id);
+    $category->update(['name' => $validatedData['name']]);
+
+    return redirect()->route('admin.faq.index')->with('success', 'Categorie succesvol bijgewerkt!');
+}
+
+
+    
 }
