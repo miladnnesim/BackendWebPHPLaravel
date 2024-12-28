@@ -57,9 +57,13 @@ class ProfileController extends Controller
     }
     public function show($id)
 {
-    if ($id == 0) {
+    if($id==null){
+        return view('login');
+    }
+    else if ($id == 0) {
         $id = auth()->user()->id;
     }
+    
     $user = User::with('organizedScrims')->findOrFail($id);
 
     return view('profile.profile', compact('user'));

@@ -15,7 +15,7 @@
                 @if (auth()->check())
                 <li><a href="{{ route('profile.show', ['id' => auth()->user()->id]) }}"><img src="{{ asset('Images/Iconprofile.png')}}" alt=""></a></li>
                 @else
-                <li><a href="{{ route('profile.show',['0'])}}"><img src="{{ asset('Images/Iconprofile.png')}}" alt=""></a></li>
+                <li><a href="{{ route('login')}}"><img src="{{ asset('Images/Iconprofile.png')}}" alt=""></a></li>
                 </ul>
                 @endif
         </nav>

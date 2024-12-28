@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('Password!321'), // Veilige hashing
             'role' => 'admin',
             'username' => 'admin',
-            'riot_id' => null,
+            'riot_id' => 'ADMin#1234',
             'birthday' => null,
             'profile_photo' => null,
             'about_me' => null,

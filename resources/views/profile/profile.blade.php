@@ -9,7 +9,7 @@
         @if ($user->profile_photo)
             <img src="{{ asset('storage/' . $user->profile_photo) }}" alt="{{ $user->username ?? $user->name }}" class="profile-photo">
         @else
-            <img src="{{ asset('default-avatar.png') }}" alt="Default Avatar" class="profile-photo">
+            <img src="{{ asset('Images/default-avatar.png') }}" alt="Default Avatar" class="default">
         @endif
     </div>
 
@@ -21,6 +21,8 @@
         <p><strong>Over Mij:</strong></p>
         <p>{{ $user->about_me ?? 'Geen informatie opgegeven' }}</p>
         <br>
+        @if ($user->id === auth()->id())
+            
         <a href="{{route ('profile.edit')}}">Edit </a>
         <br>
         <br>
@@ -28,6 +30,7 @@
             @csrf
             <button type="submit" class="logout-button">Uitloggen</button>
         </form>
+        @endif
     </div>
 </div>
 <div class="organized-scrims">
@@ -41,11 +44,14 @@
                     <strong>{{ $scrim->type }}</strong> op {{ $scrim->date }}
                     van {{ $scrim->start_time }} tot {{ $scrim->end_time }}
                     <span>({{ $scrim->language }})</span>
+                    @if ($user->id === auth()->id())
+
                     <form action="{{ route('scrim.destroy', $scrim->id) }}" method="POST" style="display: inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger">Verwijderen</button>
                     </form>
+                    @endif
                 </li>
             @endforeach
         </ul>
@@ -79,6 +85,17 @@
         object-fit: cover;
         margin-bottom: 20px;
     }
+
+    .default {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 20px;
+   
+    filter: brightness(100) invert(1);
+    }
+
 
     .profile-details p {
         margin: 10px 0;

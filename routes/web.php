@@ -29,6 +29,7 @@ Route::post('/duo', [LftduoController::class, 'store'])->name('duo.store');
 // News
 Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 
+Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
 // FAQ
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
@@ -79,7 +80,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/contact', [ContactController::class, 'adminIndex'])->name('admin.contact.index');
     Route::get('/admin/contact/{id}', [ContactController::class, 'show'])->name('admin.contact.show');
 
-    Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+    
 
     Route::get('/profileedit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
