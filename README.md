@@ -96,3 +96,16 @@ Bij het seeden van de database worden enkele standaardcategorieën, vragen, en v
 
 Gebruikers moeten hun Riot ID invullen om deel te nemen aan scrims.
 Posts voor duo-partners vereisen het specificeren van een rang en voorkeur (casual of competitief).
+
+## Bronnen
+chatgpt, voor debuggen en repititiev tasks, ik heb alles gedaan in 1 chat , maar omdat ik fotos heb geupload in de chat kan ik die niet delen.
+Chats die ik wel kan delen:
+
+https://chatgpt.com/share/677060f1-90dc-800c-a72b-121ee8400ee8
+
+https://chatgpt.com/share/677061b4-b210-800c-9490-870cdecef2c9
+
+Laravel : https://laravel.com/docs/11.x
+
+W3schools voor css: https://www.w3schools.com/css/
+
