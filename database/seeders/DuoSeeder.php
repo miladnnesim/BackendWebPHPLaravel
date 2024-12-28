@@ -4,25 +4,24 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Duo;
+use App\Models\User;
 
 class DuoSeeder extends Seeder
 {
     public function run()
     {
+        $user = User::first(); // Zorg dat er een gebruiker bestaat
+
         Duo::create([
-            'player' => 'PlayerOne',
-            'rating' => 'Diamond 2',
-            'wants_to_play' => 'Competitive',
-            'language' => 'en',
-            'notes' => 'Looking for an aggressive duelist main.',
+            'user_id' => $user->id,
+            'rank' => 'Platinum',
+            'type' => 'competitive',
         ]);
 
         Duo::create([
-            'player' => 'PlayerTwo',
-            'rating' => 'Platinum 3',
-            'wants_to_play' => 'Casual',
-            'language' => 'nl',
-            'notes' => 'Casual play with a focus on communication.',
+            'user_id' => $user->id,
+            'rank' => 'Gold',
+            'type' => 'casual',
         ]);
     }
 }

@@ -11,12 +11,10 @@ class CreateDuosTable extends Migration
     {
         Schema::create('duos', function (Blueprint $table) {
             $table->id();
-            $table->string('player'); 
-            $table->string('rating');
-            $table->string('wants_to_play'); 
-            $table->string('language'); 
-            $table->text('notes')->nullable(); 
-            $table->timestamps(); 
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('rank');
+            $table->enum('type', ['competitive', 'casual']);
+            $table->timestamps();
         });
     }
 

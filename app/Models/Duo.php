@@ -7,11 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Duo extends Model
 {
+
     protected $fillable = [
-        'player',
-        'rating',
-        'wants_to_play',
-        'language',
-        'notes',
+        'user_id',  // De gebruiker die de duo-post maakt
+        'rank',     // Rank van de gebruiker
+        'type',     // Type duo (competitive/casual)
     ];
+
+    /**
+     * Relatie met de User.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -45,6 +45,34 @@ class NewsController extends Controller
 
         return redirect()->route('home')->with('success', 'Nieuwsitem succesvol toegevoegd!');
     }
+    public function edit($id)
+{
+    $news = News::findOrFail($id);
+    return view('admin.news.edit', compact('news'));
+}
+
+public function update(Request $request, $id)
+{
+    $news = News::findOrFail($id);
+
+    $validatedData = $request->validate([
+        'title' => 'required|string|max:255',
+        'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'content' => 'required|string',
+    ]);
+
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('news_images', 'public');
+        $news->image = $imagePath;
+    }
+
+    $news->title = $validatedData['title'];
+    $news->content = $validatedData['content'];
+    $news->save();
+
+    return redirect()->route('admin.news.index')->with('success', 'Nieuwsitem succesvol bijgewerkt!');
+}
+
 
    
     public function destroy($id)

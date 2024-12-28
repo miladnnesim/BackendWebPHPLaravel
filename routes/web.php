@@ -16,12 +16,14 @@ Route::get('/', [NewsController::class, 'index'])->name('home');
 
 // Looking for Team (LFT)
 Route::get('/Lookingforteam', [LftController::class, 'index'])->name('lft');
-Route::get('/Lookingforteam/duo', [LftduoController::class, 'index'])->name('lftduoform');
 Route::get('/Lookingforteam/scrim', [LftscrimController::class, 'index'])->name('lftscrimform');
 Route::post('/Lookingforteam/scrim', [LftscrimController::class, 'store'])->name('lftscrim.store');
 Route::post('/lft/scrim/join/{id}', [LftscrimController::class, 'join'])->name('scrim.join');
 Route::post('/lft/scrim/leave/{id}', [LftscrimController::class, 'leave'])->name('scrim.leave');
 Route::delete('/scrims/{id}', [LftscrimController::class, 'destroy'])->name('scrim.destroy');
+
+Route::post('/duo', [LftduoController::class, 'store'])->name('duo.store');
+
 
 
 // News
@@ -37,7 +39,7 @@ Route::get('/faq/ask', [FaqController::class, 'create'])->name('faq.create');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
-// Admin routes (beveiligd met auth middleware)
+// auth middleware
 Route::middleware(['auth'])->group(function () {
 
     
@@ -45,6 +47,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/newsadmin/create', [NewsController::class, 'create'])->name('admin.news.create');
     Route::post('/newsadmin', [NewsController::class, 'store'])->name('admin.news.store');
     Route::delete('/newsadmin/{id}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
+    Route::get('/newsadmin/{id}/edit', [NewsController::class, 'edit'])->name('admin.news.edit');
+    Route::patch('/newsadmin/{id}', [NewsController::class, 'update'])->name('admin.news.update');
+
 
 
 
