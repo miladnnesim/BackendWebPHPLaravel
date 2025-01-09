@@ -16,32 +16,51 @@ Route::get('/', [NewsController::class, 'index'])->name('home');
 
 // Looking for Team (LFT)
 Route::get('/Lookingforteam', [LftController::class, 'index'])->name('lft');
-Route::get('/Lookingforteam/scrim', [LftscrimController::class, 'index'])->name('lftscrimform');
-Route::post('/Lookingforteam/scrim', [LftscrimController::class, 'store'])->name('lftscrim.store');
-Route::post('/lft/scrim/join/{id}', [LftscrimController::class, 'join'])->name('scrim.join');
-Route::post('/lft/scrim/leave/{id}', [LftscrimController::class, 'leave'])->name('scrim.leave');
-Route::delete('/scrims/{id}', [LftscrimController::class, 'destroy'])->name('scrim.destroy');
-
-Route::post('/duo', [LftduoController::class, 'store'])->name('duo.store');
-
-
 
 // News
 Route::get('/news/{id}', [NewsController::class, 'show'])->name('news.show');
 
+// Profile
 Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
 // FAQ
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 Route::get('/faq/ask', [FaqController::class, 'create'])->name('faq.create');
 
-
 // Contact
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
-// auth middleware
+// moet ingelogd zijn om deze routes te kunnen bezoeken
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('/Lookingforteam/scrim', [LftscrimController::class, 'index'])->name('lftscrimform');
+    Route::post('/Lookingforteam/scrim', [LftscrimController::class, 'store'])->name('lftscrim.store');
+    Route::post('/lft/scrim/join/{id}', [LftscrimController::class, 'join'])->name('scrim.join');
+    Route::post('/lft/scrim/leave/{id}', [LftscrimController::class, 'leave'])->name('scrim.leave');
+    Route::delete('/scrims/delete/{id}', [LftscrimController::class, 'destroy'])->name('scrim.destroy');
+
+    Route::post('/duo', [LftduoController::class, 'store'])->name('duo.store');
+
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+
+});
+
+
+
+
+
+
+
+
+
+
+
+// auth middleware
+Route::middleware(['auth' , 'isAdmin'])->group(function () {
 
     
     Route::get('/newsadmin', [NewsController::class, 'adminIndex'])->name('admin.news.index');
@@ -82,9 +101,7 @@ Route::middleware(['auth'])->group(function () {
 
     
 
-    Route::get('/profileedit', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
 });
 
 // Auth routes (geleverd door Laravel Breeze)

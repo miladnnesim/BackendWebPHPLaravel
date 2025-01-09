@@ -14,12 +14,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // 'user' of 'admin'
-        'username', // Optionele gebruikersnaam
-        'riot_id', // Optionele Riot ID
-        'birthday', // Geboortedatum
-        'profile_photo', // Profielfoto
-        'about_me', // Kleine "over mij" tekst
+        'role', 
+        'username', 
+        'riot_id', 
+        'birthday', 
+        'profile_photo', 
+        'about_me', 
     ];
 
     /**

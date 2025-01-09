@@ -16,6 +16,6 @@ class News extends Model
     ];
 
     protected $casts = [
-        'publication_date' => 'datetime', // Cast publication_date naar een datetime object
+        'publication_date' => 'datetime', 
     ];
 }
