@@ -14,7 +14,7 @@ class ScrimSeeder extends Seeder
 
         Scrim::create([
             'type' => 'scrim',
-            'date' => '2024-12-25',
+            'date' => '2025-3-25',
             'start_time' => '20:00:00',
             'end_time' => '22:00:00',
             'players_needed' => 5,
@@ -27,7 +27,7 @@ class ScrimSeeder extends Seeder
 
         Scrim::create([
             'type' => '5stack',
-            'date' => '2024-12-26',
+            'date' => '2025-12-26',
             'start_time' => '18:00:00',
             'end_time' => '20:00:00',
             'players_needed' => 3,
