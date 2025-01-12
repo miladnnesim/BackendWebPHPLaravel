@@ -42,24 +42,14 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/duo', [LftduoController::class, 'store'])->name('duo.store');
 
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile/edit/myprofile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
 
 });
 
-
-
-
-
-
-
-
-
-
-
-// auth middleware
+// moet ingelogd en admin zijn om deze routes te kunnen bezoeken
 Route::middleware(['auth' , 'isAdmin'])->group(function () {
 
     
@@ -99,9 +89,6 @@ Route::middleware(['auth' , 'isAdmin'])->group(function () {
     Route::get('/admin/contact', [ContactController::class, 'adminIndex'])->name('admin.contact.index');
     Route::get('/admin/contact/{id}', [ContactController::class, 'show'])->name('admin.contact.show');
 
-    
-
-    
 });
 
 // Auth routes (geleverd door Laravel Breeze)
