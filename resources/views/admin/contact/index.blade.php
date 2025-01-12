@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.AdminLayout')
 
 @section('content')
 <h1>Contactberichten</h1>
