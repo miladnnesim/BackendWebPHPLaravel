@@ -89,7 +89,19 @@
             @csrf
             <div class="form-group">
                 <label for="rank">Rank</label>
-                <input type="text" id="rank" name="rank" required>
+
+            <select id="rank" name="rank" required>
+                <option value="" disabled selected>Kies een rang</option>
+                <option value="iron">Iron</option>
+                <option value="bronze">Bronze</option>
+                <option value="silver">Silver</option>
+                <option value="gold">Gold</option>
+                <option value="platinum">Platinum</option>
+                <option value="diamond">Diamond</option>
+                <option value="ascendant">Ascendant</option>
+                <option value="immortal">Immortal</option>
+                <option value="radiant">Radiant</option>
+            </select>
             </div>
             <div class="form-group">
                 <label for="type">Type</label>
